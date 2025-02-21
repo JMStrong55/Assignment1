@@ -19,6 +19,10 @@
 ;Question 6
 
 ;Question 7
+(define (last-element lst)
+    (if (null? (cdr lst))
+        (list (car lst))
+        (last-element (cdr lst))))
 
 ;Question 8
 
