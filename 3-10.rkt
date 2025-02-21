@@ -6,7 +6,7 @@
 
 (define (pascal-display n) display (pascal n))
 
-;Question 4
+;Question 5
 (define (deleteitem lst)
       (if (< (length lst) 3)
           lst
