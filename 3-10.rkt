@@ -25,6 +25,8 @@
         (last-element (cdr lst))))
 
 ;Question 8
+
+;Question 9
 (define (EXP-DEPTH lst)
         (define (helper lst depth max-depth)
           (cond
@@ -34,7 +36,5 @@
              (max (helper (car lst) (+ depth 1) (+ depth 1))
                   (helper (cdr lst) depth max-depth)))))
         (helper lst 0 0))
-
-;Question 9
 
 ;Question 10
