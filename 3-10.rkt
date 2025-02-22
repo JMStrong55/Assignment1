@@ -17,6 +17,25 @@
                   (cdddr lst))))
 
 ;Question 6
+(define (swap-pairs lst)
+  (define (swap-recursive sublist)
+    (cond
+      ((not (list? sublist)) sublist)
+      ((null? sublist) '())
+      ((null? (cdr sublist)) sublist)
+      (else
+       (let ((first (car sublist))
+             (second (cadr sublist))
+             (rest (cddr sublist)))
+         (append
+          (if (and (pair? sublist) (pair? (cdr sublist))) (list second first) (list first))
+          (swap-recursive rest))))))
+
+  (map swap-recursive (swap-recursive lst)))
+
+
+(display (swap-pairs '(a b c (a b) (c d))))
+(newline)
 
 ;Question 7
 (define (last-element lst)
