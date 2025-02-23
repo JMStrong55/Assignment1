@@ -22,20 +22,18 @@
     (cond
       ((not (list? sublist)) sublist)
       ((null? sublist) '())
-      ((null? (cdr sublist)) sublist)
+      ((null? (cdr sublist)) (list (swap-recursive (car sublist))))
       (else
-       (let ((first (car sublist))
-             (second (cadr sublist))
-             (rest (cddr sublist)))
-         (append
-          (if (and (pair? sublist) (pair? (cdr sublist))) (list second first) (list first))
-          (swap-recursive rest))))))
+       (let ((first (swap-recursive (car sublist)))
+             (second (swap-recursive (cadr sublist)))
+             (rest (swap-recursive (cddr sublist))))
+         (append (list second first) rest)))))
 
-  (map swap-recursive (swap-recursive lst)))
-
+  (swap-recursive lst))
 
 (display (swap-pairs '(a b c (a b) (c d))))
 (newline)
+
 
 ;Question 7
 (define (last-element lst)
@@ -57,3 +55,11 @@
         (helper lst 0 0))
 
 ;Question 10
+(define (subsets left right)
+  (if (zero? (string-length right))
+      (list left)  ; Base case: return a list containing the current subset
+      (append (subsets (string-append left (substring right 0 1)) (substring right 1))  ; Pick first character
+              (subsets left (substring right 1)))))  ; Do not pick first character
+
+
+(subsets "" "abc")
