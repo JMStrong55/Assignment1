@@ -7,6 +7,29 @@
 (define (pascal-display n) display (pascal n))
 
 ;Question 4
+(define (sumodd lst)
+
+  (define (flatten lst)
+    (cond
+      ((null? lst) '())
+      ((pair? (car lst))
+       (append (flatten (car lst)) (flatten (cdr lst))))
+      (else
+       (cons (car lst) (flatten (cdr lst))))))
+
+  (define (sum-odd-less-than-8 lst)
+    (cond
+      ((null? lst) 0)
+      ((and (integer? (car lst))
+            (odd? (car lst))
+            (< (car lst) 8))
+       (+ (car lst) (sum-odd-less-than-8 (cdr lst))))
+      (else (sum-odd-less-than-8 (cdr lst)))))
+
+  (sum-odd-less-than-8 (flatten lst)))
+
+
+(display (sumodd '((2 6) 1 3 ( () 5) 8)))
 
 ;Question 5
 (define (deleteitem lst)
