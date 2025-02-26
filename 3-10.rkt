@@ -65,6 +65,14 @@
         (last-element (cdr lst))))
 
 ;Question 8
+(define (leaves tree)
+  (cond
+    ((null? tree) '())  
+    ((not (pair? tree)) (list tree))  
+    (else (append (leaves (cdr tree)) (leaves (car tree))))))
+
+(display (leaves '(((1 2) (3 4 5)) ((1) (3 4) (5))))) ; Output: '(5 4 3 1 5 4 3 2 1)
+(newline)
 
 ;Question 9
 (define (EXP-DEPTH lst)
